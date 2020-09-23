@@ -3,3 +3,9 @@ URLS:
 /service-precipitation/annee-xxxx/
 /service-precipitation/annee-xxxx/mois-xx/
 /service-precipitation/annee-xxxx/mois-xx/jour-xx/
+
+Exemples :
+/service-precipitation/sommaire/annee-2020/mois-09/jour-26/
+/service-precipitation/annee-2020/
+/service-precipitation/annee-2020/mois-09/
+/service-precipitation/annee-2020/mois-09/jour-24/
