@@ -1,0 +1,5 @@
+URLS:
+/service-precipitation/sommaire/annee-xxxx/mois-xx/jour-xx/
+/service-precipitation/annee-xxxx/
+/service-precipitation/annee-xxxx/mois-xx/
+/service-precipitation/annee-xxxx/mois-xx/jour-xx/

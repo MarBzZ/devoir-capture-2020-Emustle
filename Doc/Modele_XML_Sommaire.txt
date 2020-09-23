@@ -1,0 +1,20 @@
+ACCUEIL (moyenneJour, moyenneMois, moyenneAnnee)
+url = /service-precipitation/sommaire/annee-xxxx/mois-xx/jour-xx/
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sommaires>
+	<sommaire>
+		<jour>
+			<moyenne></moyenne>
+		</jour>
+		<mois>
+			<moyenne></moyenne>
+		</mois>
+		<annee>
+			<moyenne></moyenne>
+		</annee>
+	</sommaire>
+</sommaires>
+
+

@@ -1,0 +1,13 @@
+JOUR (h, val, min, max)
+url = /service-precipitation/annee-xxxx/mois-xx/jour-xx/
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<precipitations>
+	<precipitation>
+		<heure></heure>
+		<valeur></valeur>
+		<min></min>
+		<max></max>
+	</precipitation>
+</precipitations>
