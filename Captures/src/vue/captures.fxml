@@ -33,7 +33,7 @@
          <children>
             <Button depthTest="ENABLE" mnemonicParsing="false" prefWidth="91.0" textOverrun="CLIP" wrapText="true">
                <graphic>
-                  <ImageView fitHeight="52.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="btn-accueil" fitHeight="52.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@decoration/menu/maison.png" />
                      </image>
@@ -55,7 +55,7 @@
                   <Insets left="8.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="105.0">
+            <Button id="btn-jour" mnemonicParsing="false" prefHeight="75.0" prefWidth="105.0">
                <graphic>
                   <ImageView fitHeight="58.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -72,7 +72,7 @@
                   <Insets left="8.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0">
+            <Button id="btn-mois" mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0">
                <graphic>
                   <ImageView fitHeight="56.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -89,7 +89,7 @@
                   <Insets left="8.0" top="-0.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0">
+            <Button id="btn-annee" mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0">
                <graphic>
                   <ImageView fitHeight="84.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
