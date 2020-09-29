@@ -1,0 +1,14 @@
+ANNEE (mois, val, min, max)
+url = /service-precipitation/annee-xxxx/
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<precipitations>
+	<precipitation>
+		<mois></mois>
+		<valeur></valeur>
+		<min></min>
+		<max></max>
+	</precipitation>
+</precipitations>
+
