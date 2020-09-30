@@ -1,46 +1,44 @@
 <?php
-require "connexion.php";
+header("Content-Type: text/xml");
+echo '<?xml version="1.0" encoding="UTF-8"?>';
 
+require "connexion.php";
 $paramAnnee = $_GET["annee"];
 
 $SQL_ANNEE = "SELECT AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
             FROM precipitation
-            WHERE moment BETWEEN ':annee-01-01 00:00:01' AND ':annee-12-31 23:59:59'";
+            WHERE date_part('year', moment) = :annee";
 $requeteAnnee = $connexion->prepare($SQL_ANNEE);
 $requeteAnnee->bindParam(":annee", $paramAnnee);
 $requeteAnnee->execute();
 $annee = $requeteAnnee->fetch();
 
-
 $SQL_LISTE_MOIS = "SELECT date_part('month', moment) as mois, AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
             FROM precipitation
+            WHERE date_part('year', moment) = :annee
             GROUP BY mois
             ORDER BY mois ASC";
 $requeteListeMois = $connexion->prepare($SQL_LISTE_MOIS);
+$requeteListeMois->bindParam(":annee", $paramAnnee);
 $requeteListeMois->execute();
 $listeMois = $requeteListeMois->fetchAll();
 
-?> 
-
-<?xml version="1.0" encoding="UTF-8"?>
+?>
 <precipitations>
-	<precipitation>
-		<mois>
-            <?php
-            foreach($listeMois as $mois)
-            {
-            ?>
-            <mois-<?php echo $mois['mois']?>>
-                <moyenne><?php echo $mois['moyenne']?></moyenne>
-                <min><?php echo round($mois['min'], 1)?></min>
-                <max><?php echo round($mois['max'], 1)?></max>
-            </mois-<?php echo $mois['mois']?>>
-            <?php
-            }
-            ?>
-        </mois>
-		<moyenne><?php echo $annee['moyenne']?></moyenne>
-		<min><?php echo round($annee['min'], 1)?></min>
-		<max><?php echo round($annee['max'], 1)?></max>
-	</precipitation>
+<?php
+foreach($listeMois as $mois)
+{
+?>
+    <precipitation>
+		<mois><?php echo $mois['mois'];?></mois>
+        <moyenne><?php echo  number_format($mois['moyenne'],1);?></moyenne>
+        <min><?php echo  number_format($mois['min'],1);?></min>
+        <max><?php echo  number_format($mois['max'],1);?></max>
+    </precipitation>
+<?php
+}
+?>
+    <moyenne><?php echo  number_format($annee['moyenne'],1);?></moyenne>
+	<min><?php echo  number_format($annee['min'],1);?></min>
+	<max><?php echo  number_format($annee['max'],1);?></max>
 </precipitations>
