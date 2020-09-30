@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sommaires>
+	<sommaire>
+		<jour>
+			<moyenne>22</moyenne>
+		</jour>
+		<mois>
+			<moyenne>10</moyenne>
+		</mois>
+		<annee>
+			<moyenne>3</moyenne>
+		</annee>
+	</sommaire>
+</sommaires>

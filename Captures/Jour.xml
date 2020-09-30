@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<precipitations>
+	<precipitation>
+		<heure>11:00</heure>
+		<valeur>10</valeur>
+		<min>3</min>
+		<max>55</max>
+	</precipitation>
+	<precipitation>
+		<heure>12:00</heure>
+		<valeur>11</valeur>
+		<min>0</min>
+		<max>11</max>
+	</precipitation>
+	<precipitation>
+		<heure>13:00</heure>
+		<valeur>12</valeur>
+		<min>1</min>
+		<max>13</max>
+	</precipitation>
+</precipitations>

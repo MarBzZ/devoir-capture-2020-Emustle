@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<precipitations>
+	<precipitation>
+		<jour>10</jour>
+		<valeur>2</valeur>
+		<min>0</min>
+		<max>21</max>
+	</precipitation>
+	<precipitation>
+		<jour>11</jour>
+		<valeur>5</valeur>
+		<min>1</min>
+		<max>12</max>
+	</precipitation>
+	<precipitation>
+		<jour>12</jour>
+		<valeur>4</valeur>
+		<min>3</min>
+		<max>11</max>
+	</precipitation>
+</precipitations>

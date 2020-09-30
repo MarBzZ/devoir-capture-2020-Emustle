@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<precipitations>
+	<precipitation>
+		<mois>Janvier</mois>
+		<valeur>10</valeur>
+		<min>5</min>
+		<max>11</max>
+	</precipitation>
+	<precipitation>
+		<mois>Fevrier</mois>
+		<valeur>22</valeur>
+		<min>2</min>
+		<max>33</max>
+	</precipitation>
+	<precipitation>
+		<mois>Mars</mois>
+		<valeur>3</valeur>
+		<min>0</min>
+		<max>8</max>
+	</precipitation>
+</precipitations>
+
