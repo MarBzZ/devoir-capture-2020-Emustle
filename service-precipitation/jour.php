@@ -1,7 +1,4 @@
 <?php
-header("Content-type: text/xml");
-echo '<?xml version="1.0" encoding="UTF-8"?>';
-
 require "connexion.php";
 $paramJour = $_GET['jour'];
 $paramMois = $_GET['mois'];
@@ -34,6 +31,8 @@ $requeteListeHeure->bindParam(":annee", $paramAnnee);
 $requeteListeHeure->execute();
 $listeHeure = $requeteListeHeure->fetchAll();
 
+header("Content-type: text/xml");
+echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <precipitations>
 <?php

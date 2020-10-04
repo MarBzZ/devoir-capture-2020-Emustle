@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^annee-([0-9]*)/?$ annee.php?annee=$1
+ReWriteRule ^annee-([0-9]*)\/mois-([1-9]|1[0-2])/?$ mois.php?annee=$1&mois=$2
+RewriteRule ^annee-([0-9]*)\/mois-([1-9]|1[0-2])\/jour-([1-9]|1[0-9]|2[0-9]|3[0-1])/?$ jour.php?annee=$1&mois=$2&jour=$3

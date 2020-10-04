@@ -1,11 +1,11 @@
-  <?php
+<?php
 
 //phpinfo();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$usager = 'postgres';
+$usager = 'hyvong';
 $motdepasse = 'postRoot';
 $hote = 'localhost';
 $base = 'capture';
