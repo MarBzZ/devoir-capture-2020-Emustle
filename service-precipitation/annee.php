@@ -1,25 +1,30 @@
 <?php
 
 require "connexion.php";
-$paramAnnee = $_GET["annee"];
 
-$SQL_ANNEE = "SELECT AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
-            FROM precipitation
-            WHERE date_part('year', moment) = :annee";
-$requeteAnnee = $connexion->prepare($SQL_ANNEE);
-$requeteAnnee->bindParam(":annee", $paramAnnee);
-$requeteAnnee->execute();
-$annee = $requeteAnnee->fetch();
+$paramAnnee = filter_var($_GET["annee"], FILTER_VALIDATE_INT);
 
-$SQL_LISTE_MOIS = "SELECT date_part('month', moment) as mois, AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
-            FROM precipitation
-            WHERE date_part('year', moment) = :annee
-            GROUP BY mois
-            ORDER BY mois ASC";
-$requeteListeMois = $connexion->prepare($SQL_LISTE_MOIS);
-$requeteListeMois->bindParam(":annee", $paramAnnee);
-$requeteListeMois->execute();
-$listeMois = $requeteListeMois->fetchAll();
+if(!empty($paramAnnee))
+{
+
+    $SQL_ANNEE = "SELECT AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
+                FROM precipitation
+                WHERE date_part('year', moment) = :annee";
+    $requeteAnnee = $connexion->prepare($SQL_ANNEE);
+    $requeteAnnee->bindParam(":annee", $paramAnnee);
+    $requeteAnnee->execute();
+    $annee = $requeteAnnee->fetch();
+
+    $SQL_LISTE_MOIS = "SELECT date_part('month', moment) as mois, AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
+                FROM precipitation
+                WHERE date_part('year', moment) = :annee
+                GROUP BY mois
+                ORDER BY mois ASC";
+    $requeteListeMois = $connexion->prepare($SQL_LISTE_MOIS);
+    $requeteListeMois->bindParam(":annee", $paramAnnee);
+    $requeteListeMois->execute();
+    $listeMois = $requeteListeMois->fetchAll();
+}
 
 header("Content-Type: text/xml");
 echo '<?xml version="1.0" encoding="UTF-8"?>';
