@@ -17,6 +17,9 @@ public abstract class Navigateur extends Application{ // Application de javafx e
 		instance = this;
 		Logger.setLevel(Logger.INFO);
 		VueSommaire.getInstance().activerControles();
+		VueJour.getInstance().activerControles();
+		VueMois.getInstance().activerControles();
+		VueAnnee.getInstance().activerControles();
 	}
 	
 	public void afficherVue(Vue vue)

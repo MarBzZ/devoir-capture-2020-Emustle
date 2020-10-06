@@ -12,6 +12,8 @@ import modele.Annee;
 import modele.Jour;
 import modele.Mois;
 import modele.Sommaire;
+import vue.Navigateur;
+import vue.VueAnnee;
 import vue.VueJour;
 import vue.VueSommaire;
 
@@ -24,8 +26,13 @@ public class ControleurSommaire extends Controleur{
 		Logger.logMsg(Logger.INFO, "new ControleurSommaire()");
 		
 		//TODO Remove
-		testerLesDAO();
+		//testerLesDAO();
 		//
+	}
+	
+	public void actionOuvrirSommaire(VueSommaire vue) 
+	{
+		Navigateur.getInstance().afficherVue(vue);
 	}
 
 	/*public void actionOuvrirCapture(int id) {
@@ -39,7 +46,7 @@ public class ControleurSommaire extends Controleur{
 	//TODO remove
 	//TEST DES DAOS
 	
-	private void testerLesDAO() {
+	/*private void testerLesDAO() {
 		Logger.logMsg(Logger.INFO, "testerLesDAO => début");
 		testerJourDAO();
 		testerMoisDAO();
@@ -67,5 +74,5 @@ public class ControleurSommaire extends Controleur{
 			Logger.logMsg(Logger.INFO, annee.toString());
 		}
 	}
-	//
+	//*/
 }

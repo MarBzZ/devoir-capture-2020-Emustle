@@ -31,9 +31,9 @@
    <children>
       <VBox id="boite-menu" layoutX="-7.0" layoutY="132.0" prefHeight="616.0" prefWidth="85.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.topAnchor="132.0">
          <children>
-            <Button depthTest="ENABLE" mnemonicParsing="false" prefWidth="91.0" textOverrun="CLIP" wrapText="true">
+            <Button id="btn-accueil" depthTest="ENABLE" mnemonicParsing="false" prefWidth="91.0" textOverrun="CLIP" wrapText="true">
                <graphic>
-                  <ImageView id="btn-accueil" fitHeight="52.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="52.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@decoration/menu/maison.png" />
                      </image>
