@@ -31,9 +31,15 @@ public class MoisDAO {
 	
 	public HashMap<String, Float> getStatistique(){
 		HashMap<String, Float> statistique = new HashMap<String, Float>();
-		Element champMin = (Element)(getDocumentParUrl().getElementsByTagName("min")).item(1);
-		Element champMoyenne = (Element)(getDocumentParUrl().getElementsByTagName("moyenne")).item(1);
-		Element champMax = (Element)(getDocumentParUrl().getElementsByTagName("max")).item(1);
+		Document document = getDocumentParUrl();
+		
+		NodeList elementsMin = document.getElementsByTagName("min");
+		NodeList elementsMoyenne = document.getElementsByTagName("moyenne");
+		NodeList elementsMax = document.getElementsByTagName("max");
+		
+		Element champMin = (Element) elementsMin.item(elementsMin.getLength() -1);
+		Element champMoyenne = (Element) elementsMoyenne.item(elementsMoyenne.getLength() -1);
+		Element champMax = (Element) elementsMax.item(elementsMax.getLength() -1);
 		
 		statistique.put("min", Float.parseFloat(champMin.getTextContent()));
 		statistique.put("moyenne", Float.parseFloat(champMoyenne.getTextContent()));
