@@ -3,18 +3,18 @@ package modele;
 public class Annee {
 
 	private String mois;
-	private int valeur;
-	private int min;
-	private int max;
+	private float moyenne;
+	private float min;
+	private float max;
 
 	public Annee() {
 		super();
 	}
 	
-	public Annee(String mois, int valeur, int min, int max) {
+	public Annee(String mois, float moyenne, float min, float max) {
 		super();
 		this.mois = mois;
-		this.valeur = valeur;
+		this.moyenne = moyenne;
 		this.min = min;
 		this.max = max;
 	}
@@ -25,26 +25,26 @@ public class Annee {
 	public void setMois(String mois) {
 		this.mois = mois;
 	}
-	public int getValeur() {
-		return valeur;
+	public float getMoyenne() {
+		return moyenne;
 	}
-	public void setValeur(int valeur) {
-		this.valeur = valeur;
+	public void setMoyenne(float moyenne) {
+		this.moyenne = moyenne;
 	}
-	public int getMin() {
+	public float getMin() {
 		return min;
 	}
-	public void setMin(int min) {
+	public void setMin(float min) {
 		this.min = min;
 	}
-	public int getMax() {
+	public float getMax() {
 		return max;
 	}
-	public void setMax(int max) {
+	public void setMax(float max) {
 		this.max = max;
 	}
 	
 	public String toString() {
-		return "mois : " + this.mois + "  valeur : " + this.valeur + "  min : " + this.min + "  max : " + this.max;
+		return "mois : " + this.mois + "  moyenne : " + this.moyenne + "  min : " + this.min + "  max : " + this.max;
 	}
 }

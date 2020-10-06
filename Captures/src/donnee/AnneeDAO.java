@@ -1,6 +1,8 @@
 package donnee;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -8,24 +10,63 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import modele.Annee;
 import modele.Mois;
 
 public class AnneeDAO {
 
 	public static final String MOIS = "mois";
+	public static final String[] LISTEMOIS = {"Janvier", "Février",
+											  "Mars", "Avril",
+											  "Mai", "Juin",
+											  "Juillet", "Août",
+											  "Septembre", "Octobre",
+											  "Novembre", "Décembre"
+											 };
 	private static AnneeDAO instance;
 	private final String fichier = "Annee.xml";
-	private final String url = "";
+	private final String formatUrl = "%s/annee-%d";
+	
 
-	public List<Annee> getListe() {
+	/*public List<Annee> getListe() {
 		Document document = XmlDAO.getXmlParFichier(fichier);
 		return paserDocumentEnListeAnnee(document);
+	}*/
+	
+	public List<Annee> getListe() {
+		return paserDocumentEnListeAnnee(getDocumentParUrl());
 	}
 	
-	public List<Annee> getListe(String url) {
-		if (url != XmlDAO.URL) return null;
-		return paserDocumentEnListeAnnee(XmlDAO.getXmlParUrl(this.url, XmlDAO.BALISE_FERMETURE));
+	public HashMap<String, Float> getStatistique(){
+		HashMap<String, Float> statistique = new HashMap<String, Float>();
+		Element champMin = (Element)(getDocumentParUrl().getElementsByTagName("min")).item(1);
+		Element champMoyenne = (Element)(getDocumentParUrl().getElementsByTagName("moyenne")).item(1);
+		Element champMax = (Element)(getDocumentParUrl().getElementsByTagName("max")).item(1);
+		
+		statistique.put("min", Float.parseFloat(champMin.getTextContent()));
+		statistique.put("moyenne", Float.parseFloat(champMoyenne.getTextContent()));
+		statistique.put("max", Float.parseFloat(champMax.getTextContent()));
+
+		return statistique;
+	}
+	
+	public float getMoyenneSommaire() {
+		Element champMoyenne = (Element)(getDocumentParUrl().getElementsByTagName("moyenne")).item(1);
+		return Float.parseFloat(champMoyenne.getTextContent());
+	}
+	
+	private Document getDocumentParUrl() {
+		//Date automatique
+		//int annee = LocalDateTime.now().getYear();
+		
+		//Date Fixe
+		int annee = 2019;
+		
+		String url = String.format(this.formatUrl, XmlDAO.URL, annee);
+		Logger.logMsg(Logger.INFO, "DAO request on : " + url);
+		return XmlDAO.getXmlParUrl(url , XmlDAO.BALISE_FERMETURE);
 	}
 	
 	private List<Annee> paserDocumentEnListeAnnee(Document document){
@@ -47,16 +88,17 @@ public class AnneeDAO {
 						
 						switch (champElement.getTagName()) {
 							case MOIS :
-								annee.setMois(champElement.getTextContent());
+								String mois = LISTEMOIS[Integer.parseInt(champElement.getTextContent())-1];
+								annee.setMois(mois);
 								break;
-							case XmlDAO.VALEUR :
-								annee.setValeur(Integer.parseInt(champElement.getTextContent()));
+							case XmlDAO.MOYENNE :
+								annee.setMoyenne(Float.parseFloat(champElement.getTextContent()));
 								break;
 							case XmlDAO.MIN :
-								annee.setMin(Integer.parseInt(champElement.getTextContent()));
+								annee.setMin(Float.parseFloat(champElement.getTextContent()));
 								break;
 							case XmlDAO.MAX :
-								annee.setMax(Integer.parseInt(champElement.getTextContent()));
+								annee.setMax(Float.parseFloat(champElement.getTextContent()));
 								break;
 						}
 					}

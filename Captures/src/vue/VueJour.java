@@ -85,7 +85,7 @@ public class VueJour extends Vue {
         TableColumn colonneMin = (TableColumn) tableau.getColumns().get(2);
         TableColumn colonneMax = (TableColumn) tableau.getColumns().get(3);
         colonneHeure.setCellValueFactory(new PropertyValueFactory<>("heure"));
-        colonneValeur.setCellValueFactory(new PropertyValueFactory<>("valeur"));
+        colonneValeur.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
         colonneMin.setCellValueFactory(new PropertyValueFactory<>("min"));
         colonneMax.setCellValueFactory(new PropertyValueFactory<>("max"));
 

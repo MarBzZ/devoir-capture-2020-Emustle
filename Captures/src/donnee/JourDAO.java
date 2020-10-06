@@ -1,6 +1,8 @@
 package donnee;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -15,16 +17,48 @@ public class JourDAO {
 	private static JourDAO instance;
 	private static final String HEURE = "heure";
 	private final String fichier = "Jour.xml";
-	private final String url = "";
+	private final String formatUrl = "%s/annee-%d/mois-%d/jour-%d";
 
-	public List<Jour> getListe() {
+	/*public List<Jour> getListe() {
 		Document document = XmlDAO.getXmlParFichier(fichier);
 		return paserDocumentEnListeJour(document);
+	}*/
+	
+	public List<Jour> getListe() {
+		return paserDocumentEnListeJour(getDocumentParUrl());
 	}
 	
-	public List<Jour> getListe(String url) {
-		if (url != XmlDAO.URL) return null;
-		return paserDocumentEnListeJour(XmlDAO.getXmlParUrl(this.url, XmlDAO.BALISE_FERMETURE));
+	public HashMap<String, Float> getStatistique(){
+		HashMap<String, Float> statistique = new HashMap<String, Float>();
+		Element champMin = (Element)(getDocumentParUrl().getElementsByTagName("min")).item(1);
+		Element champMoyenne = (Element)(getDocumentParUrl().getElementsByTagName("moyenne")).item(1);
+		Element champMax = (Element)(getDocumentParUrl().getElementsByTagName("max")).item(1);
+		
+		statistique.put("min", Float.parseFloat(champMin.getTextContent()));
+		statistique.put("moyenne", Float.parseFloat(champMoyenne.getTextContent()));
+		statistique.put("max", Float.parseFloat(champMax.getTextContent()));
+
+		return statistique;
+	}
+	
+	public float getMoyenneSommaire() {
+		Element champMoyenne = (Element)(getDocumentParUrl().getElementsByTagName("moyenne")).item(1);
+		return Float.parseFloat(champMoyenne.getTextContent());
+	}
+	
+	private Document getDocumentParUrl() {
+		//Date automatique
+		/*int annee = LocalDateTime.now().getYear();
+		int mois = LocalDateTime.now().getMonthValue();
+		int jour = LocalDateTime.now().getDayOfMonth();*/
+		
+		//Date Fixe
+		int annee = 2019;
+		int mois = 12;
+		int jour = 23;
+		
+		String url = String.format(this.formatUrl, XmlDAO.URL, annee, mois, jour);
+		return XmlDAO.getXmlParUrl(url, XmlDAO.BALISE_FERMETURE);
 	}
 	
 	private List<Jour> paserDocumentEnListeJour(Document document){
@@ -46,16 +80,16 @@ public class JourDAO {
 						
 						switch (champElement.getTagName()) {
 							case HEURE :
-								jour.setHeure(champElement.getTextContent());
+								jour.setHeure(String.format("%s:00",champElement.getTextContent()));
 								break;
-							case XmlDAO.VALEUR :
-								jour.setValeur(Integer.parseInt(champElement.getTextContent()));
+							case XmlDAO.MOYENNE :
+								jour.setMoyenne(Float.parseFloat(champElement.getTextContent()));
 								break;
 							case XmlDAO.MIN :
-								jour.setMin(Integer.parseInt(champElement.getTextContent()));
+								jour.setMin(Float.parseFloat(champElement.getTextContent()));
 								break;
 							case XmlDAO.MAX :
-								jour.setMax(Integer.parseInt(champElement.getTextContent()));
+								jour.setMax(Float.parseFloat(champElement.getTextContent()));
 								break;
 						}
 					}

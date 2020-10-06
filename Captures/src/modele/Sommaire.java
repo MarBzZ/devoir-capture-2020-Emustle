@@ -1,37 +1,37 @@
 package modele;
 
 public class Sommaire {
-	private int moyenneJour;
-	private int moyenneMois;
-	private int moyenneAnnee;
+	private float moyenneJour;
+	private float moyenneMois;
+	private float moyenneAnnee;
 	
 	public Sommaire() {
 		super();
 	}
 	
-	public Sommaire(int moyenneJour, int moyenneMois, int moyenneAnnee) {
+	public Sommaire(float moyenneJour, float moyenneMois, float moyenneAnnee) {
 		super();
 		this.moyenneJour = moyenneJour;
 		this.moyenneMois = moyenneMois;
 		this.moyenneAnnee = moyenneAnnee;
 	}
 	
-	public int getMoyenneJour() {
+	public float getMoyenneJour() {
 		return moyenneJour;
 	}
-	public void setMoyenneJour(int moyenneJour) {
+	public void setMoyenneJour(float moyenneJour) {
 		this.moyenneJour = moyenneJour;
 	}
-	public int getMoyenneMois() {
+	public float getMoyenneMois() {
 		return moyenneMois;
 	}
-	public void setMoyenneMois(int moyenneMois) {
+	public void setMoyenneMois(float moyenneMois) {
 		this.moyenneMois = moyenneMois;
 	}
-	public int getMoyenneAnnee() {
+	public float getMoyenneAnnee() {
 		return moyenneAnnee;
 	}
-	public void setMoyenneAnnee(int moyenneAnnee) {
+	public void setMoyenneAnnee(float moyenneAnnee) {
 		this.moyenneAnnee = moyenneAnnee;
 	}
 	

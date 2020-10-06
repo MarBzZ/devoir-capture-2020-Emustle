@@ -23,8 +23,9 @@ import org.xml.sax.SAXException;
 
 public class XmlDAO {
 
-	public static final String URL = "url";
+	public static final String URL = "http://51.79.55.148/service.precipitations";
 	public static final String VALEUR = "valeur";
+	public static final String MOYENNE = "moyenne";
 	public static final String MIN = "min";
 	public static final String MAX = "max";
 	public static final String BALISE_FERMETURE = "</precipitations>";
