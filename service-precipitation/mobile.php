@@ -1,25 +1,22 @@
 <?php
-require "./BaseDeDonnees.php";
+include "PrecipitationDAO.php";
+
+$paramMois = filter_var($_GET['mois'], FILTER_VALIDATE_INT);
+$paramAnnee = filter_var($_GET["annee"], FILTER_VALIDATE_INT);
 
 $paramAnnee = $_GET["annee"];
 //requete SQL pour la base de donnee pour la mesure actuelle
-$REQUEST_ACTUELLE = "SELECT mesure FROM precipitation WHERE moment = (SELECT MIN(moment) FROM precipitation)"; 
-$temp = BaseDeDonnees::getConnection()->prepare($REQUEST_ACTUELLE);
-$temp->execute();
-$actuelle = $temp->fetch();
+if(!empty($paramAnnee) && !empty($paramMois))
+{
+//requete SQL pour la base de donnee pour la mesure actuelle
+$actuelle = PrecipitationDAO::listerStatActuelle();
 
 //requete SQL pour la base de donnee pour la moyenne de la journee
-$REQUEST_JOUR = "SELECT AVG(mesure) as moyenne FROM precipitation WHERE moment <= now()";
-$temp = BaseDeDonnees::getConnection()->prepare($REQUEST_JOUR);
-$temp->execute();
-$jour = $temp->fetch();
+$jour = PrecipitationDAO::listerStatJour();
 
 //requete SQL pour la base de donnee pour la moyenne de l'annee
-$REQUEST_ANNEE = "SELECT AVG(mesure) as moyenne FROM precipitation WHERE date_part('year', moment) = :annee"; 
-$temp = BaseDeDonnees::getConnection()->prepare($REQUEST_ANNEE);
-$temp->bindParam(":annee", $paramAnnee);
-$temp->execute();
-$annee = $temp->fetch();
+$annee = PrecipitationDAO::listerStatsAnnee($paramAnnee, $paramMois);
+}
 
 header("Content-Type:text/xml");?>
 <?xml version="1.0" encoding="UTF-8"?>

@@ -49,6 +49,26 @@ class PrecipitationDAO
         return $jour;
     }
 
+    public static function listerStatActuelle()
+    {
+        $REQUEST_ACTUELLE = "SELECT mesure FROM precipitation WHERE moment = (SELECT MIN(moment) FROM precipitation)"; 
+        $temp = BaseDeDonnees::getConnection()->prepare($REQUEST_ACTUELLE);
+        $temp->execute();
+        $actuelle = $temp->fetch();
+
+        return $actuelle;
+    }
+
+    public static function listerStatJour()
+    {
+        $REQUEST_JOUR = "SELECT AVG(mesure) as moyenne FROM precipitation WHERE moment <= now()";
+        $temp = BaseDeDonnees::getConnection()->prepare($REQUEST_JOUR);
+        $temp->execute();
+        $jour = $temp->fetch();
+
+        return $jour;
+    }
+
     public static function listerMois($paramAnnee)
     {
         $SQL_LISTE_MOIS = "SELECT date_part('month', moment) as mois, AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
