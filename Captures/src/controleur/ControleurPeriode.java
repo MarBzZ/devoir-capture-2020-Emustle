@@ -21,6 +21,7 @@ public class ControleurPeriode extends Controleur
 	public void actionOuvrirJour(VueJour vue)
 	{
 		JourDAO jourDAO = new JourDAO();
+		vue.afficherStatistiques(jourDAO.getStatistique());
 		vue.afficherHeures(jourDAO.getListe());
 		Navigateur.getInstance().afficherVue(vue);
 	}
@@ -28,6 +29,7 @@ public class ControleurPeriode extends Controleur
 	public void actionOuvrirMois(VueMois vue) 
 	{
 		MoisDAO moisDAO = new MoisDAO();
+		vue.afficherStatistiques(moisDAO.getStatistique());
 		vue.afficherJours(moisDAO.getListe());
 		Navigateur.getInstance().afficherVue(vue);	
 	}
@@ -35,6 +37,7 @@ public class ControleurPeriode extends Controleur
 	public void actionOuvrirAnnee(VueAnnee vue) 
 	{
 		AnneeDAO anneeDAO = new AnneeDAO();
+		vue.afficherStatistiques(anneeDAO.getStatistique());
 		vue.afficherMois(anneeDAO.getListe());
 		Navigateur.getInstance().afficherVue(vue);
 	}

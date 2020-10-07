@@ -1,5 +1,6 @@
 package vue;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.sun.media.jfxmedia.logging.Logger;
@@ -8,6 +9,7 @@ import controleur.ControleurPeriode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -72,6 +74,16 @@ public class VueMois extends Vue {
             	VueAnnee.getInstance().getControleur().actionOuvrirAnnee(VueAnnee.getInstance());
             }
         });
+	}
+	
+	public void afficherStatistiques(HashMap<String, Float> statistiques) {
+		Label labelMin = (Label)lookup("#label-minimum");
+		Label labelMoyenne = (Label)lookup("#label-moyenne");
+		Label labelMax = (Label)lookup("#label-maximum");
+		
+		labelMin.setText(statistiques.get("min").toString()+"mm");
+		labelMoyenne.setText(statistiques.get("moyenne").toString()+"mm");
+		labelMax.setText(statistiques.get("max").toString()+"mm");
 	}
 	
 	public void afficherJours(List<Mois> listeMois)
