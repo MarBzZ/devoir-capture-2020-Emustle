@@ -1,5 +1,5 @@
 <?php
-require "./connexion.php";
+require "connexion.php";
 
 $paramAnnee = $_GET["annee"];
 //requete SQL pour la base de donnee pour la mesure actuelle
