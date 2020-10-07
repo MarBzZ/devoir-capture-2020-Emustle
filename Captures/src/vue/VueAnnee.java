@@ -91,20 +91,22 @@ public class VueAnnee extends Vue {
         // Récupération de l'objet dans lequel afficher
         TableView tableau = (TableView)lookup("#tableau");
 
-        // Association des champs de l'objet avec les colonnes du tableau
-        TableColumn colonneMois = (TableColumn) tableau.getColumns().get(0);
-        TableColumn colonneValeur = (TableColumn) tableau.getColumns().get(1);
-        TableColumn colonneMin = (TableColumn) tableau.getColumns().get(2);
-        TableColumn colonneMax = (TableColumn) tableau.getColumns().get(3);
-        colonneMois.setCellValueFactory(new PropertyValueFactory<>("mois"));
-        colonneValeur.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-        colonneMin.setCellValueFactory(new PropertyValueFactory<>("min"));
-        colonneMax.setCellValueFactory(new PropertyValueFactory<>("max"));
-
-        // Ajout des données
-        for(Annee annee : annees)
-        {
-            tableau.getItems().add(annee);
+        if (tableau.getItems().isEmpty()) {
+	        // Association des champs de l'objet avec les colonnes du tableau
+	        TableColumn colonneMois = (TableColumn) tableau.getColumns().get(0);
+	        TableColumn colonneValeur = (TableColumn) tableau.getColumns().get(1);
+	        TableColumn colonneMin = (TableColumn) tableau.getColumns().get(2);
+	        TableColumn colonneMax = (TableColumn) tableau.getColumns().get(3);
+	        colonneMois.setCellValueFactory(new PropertyValueFactory<>("mois"));
+	        colonneValeur.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
+	        colonneMin.setCellValueFactory(new PropertyValueFactory<>("min"));
+	        colonneMax.setCellValueFactory(new PropertyValueFactory<>("max"));
+	
+	        // Ajout des données
+	        for(Annee annee : annees)
+	        {
+	            tableau.getItems().add(annee);
+	        }
         }
     }
 }
