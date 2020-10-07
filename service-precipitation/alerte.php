@@ -4,8 +4,6 @@ include "PrecipitationDAO.php";
 $paramMois = filter_var($_GET['mois'], FILTER_VALIDATE_INT);
 $paramAnnee = filter_var($_GET["annee"], FILTER_VALIDATE_INT);
 
-$paramAnnee = $_GET["annee"];
-
 if(!empty($paramAnnee) && !empty($paramMois))
 {
 //requete SQL pour la base de donnee pour la mesure actuelle
@@ -15,7 +13,7 @@ $actuelle = PrecipitationDAO::listerStatActuelle();
 $jour = PrecipitationDAO::listerStatJour();
 
 //requete SQL pour la base de donnee pour la moyenne de l'annee
-$annee = PrecipitationDAO::listerStatsAnnee($paramAnnee, $paramMois);
+$annee = PrecipitationDAO::listerStatsAnnee($paramAnnee);
 }
 
 $seuil = 4;
