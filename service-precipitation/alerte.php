@@ -1,10 +1,9 @@
 <?php
 include "PrecipitationDAO.php";
 
-$paramMois = filter_var($_GET['mois'], FILTER_VALIDATE_INT);
 $paramAnnee = filter_var($_GET["annee"], FILTER_VALIDATE_INT);
 
-if(!empty($paramAnnee) && !empty($paramMois))
+if(!empty($paramAnnee))
 {
 //requete SQL pour la base de donnee pour la mesure actuelle
 $actuelle = PrecipitationDAO::listerStatActuelle();
