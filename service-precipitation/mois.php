@@ -1,34 +1,13 @@
 <?php
-require "connexion.php";
+include "PrecipitationDAO.php";
 
 $paramMois = filter_var($_GET['mois'], FILTER_VALIDATE_INT);
 $paramAnnee = filter_var($_GET["annee"], FILTER_VALIDATE_INT);
 
 if(!empty($paramAnnee) && !empty($paramMois))
 {    
-    $SQL_MOIS = "SELECT AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
-            FROM precipitation
-            WHERE date_part('month', moment) = :mois
-            AND date_part('year', moment) = :annee";
-
-    $requeteMois = $connexion->prepare($SQL_MOIS);
-    $requeteMois->bindParam(":mois", $paramMois);
-    $requeteMois->bindParam(":annee", $paramAnnee);
-    $requeteMois->execute();
-    $mois = $requeteMois->fetch();
-
-
-    $SQL_LISTE_JOUR = "SELECT date_part('day', moment) as jour, AVG(mesure) as moyenne, MAX(mesure) as max, MIN(mesure) as min
-                FROM precipitation
-                WHERE date_part('month', moment) = :mois
-                AND date_part('year', moment) = :annee
-                GROUP BY jour
-                ORDER BY jour ASC";
-    $requeteListeJour = $connexion->prepare($SQL_LISTE_JOUR);
-    $requeteListeJour->bindParam(":mois", $paramMois);
-    $requeteListeJour->bindParam(":annee", $paramAnnee);
-    $requeteListeJour->execute();
-    $listeJour = $requeteListeJour->fetchAll();
+    $mois = PrecipitationDAO::listerStatsMois($paramAnnee, $paramMois);
+    $listeJour = PrecipitationDAO::listerJours($paramAnnee, $paramMois);
 }
 
 header("Content-type: text/xml");
